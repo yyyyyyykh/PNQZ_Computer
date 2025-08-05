@@ -172,8 +172,18 @@
   <h2>加入我们（以下内容尚未完善）</h2>
   <p>零基础可报名，面试只看热情与脑洞！</p>
   <div class="join-way">
-    <a class="btn" href="#" target="_blank">QQ群一键加</a>
-    <a class="btn" href="#" target="_blank">关注微信公众号</a>
+    <a class="btn qq-btn" href="#" target="_blank">社长微信</a>
+    <a class="btn wechat-btn" href="#" target="_blank">加入微信纳新群</a>
+  </div>
+
+  <!-- 修改浮窗内容 -->
+  <div class="modal" id="qrModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="qrImage" src="" alt="二维码">
+      <div id="wechatId" style="margin-top: 1rem; font-weight: bold;"></div>
+      <button id="actionBtn" style="margin-top: 1rem; background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;"></button>
+    </div>
   </div>
   <p>招生计划：人数视纳新情况而定</p>
   <p>欢迎25届侨中学子前来报名</p>
@@ -242,3 +252,104 @@ document.querySelector('.scroll-hint').addEventListener('click',()=>{
 </body>
 
 </html>
+
+<style>
+  /* 添加浮窗样式 */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+  }
+  
+  .modal-content {
+    background-color: var(--card);
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: var(--radius);
+    width: 300px;
+    text-align: center;
+    position: relative;
+  }
+  
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+  }
+  
+  .close {
+    color: var(--text);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: var(--accent);
+  }
+</style>
+
+<script>
+  // 获取浮窗元素
+  const modal = document.getElementById('qrModal');
+  const qrImage = document.getElementById('qrImage');
+  const closeBtn = document.querySelector('.close');
+  const wechatId = document.getElementById('wechatId');
+  const actionBtn = document.getElementById('actionBtn');
+  
+  // 为社长微信按钮添加点击事件
+  document.querySelector('.qq-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    qrImage.src = 'assets/images/welcome.jpg';
+    wechatId.textContent = '微信号: qq15819564898';
+    actionBtn.textContent = '复制微信号';
+    actionBtn.onclick = function() {
+      const id = 'qq15819564898';
+      navigator.clipboard.writeText(id).then(() => {
+        actionBtn.textContent = '已复制';
+        setTimeout(() => {
+          actionBtn.textContent = '复制微信号';
+        }, 2000);
+      });
+    };
+    modal.style.display = 'block';
+  });
+  
+  // 为微信纳新群按钮添加点击事件
+  document.querySelector('.wechat-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    qrImage.src = 'assets/images/wechat-qr.jpg';
+    wechatId.textContent = '扫描上方二维码加入纳新群';
+    actionBtn.textContent = '保存二维码';
+    actionBtn.onclick = function() {
+      const link = document.createElement('a');
+      link.href = qrImage.src;
+      link.download = 'wechat-qr.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    modal.style.display = 'block';
+  });
+  
+  // 关闭浮窗
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+  
+  // 点击浮窗外部关闭
+  window.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
