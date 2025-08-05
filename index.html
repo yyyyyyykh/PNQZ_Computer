@@ -1,1 +1,244 @@
-<h1>Welcome to Puning Huaqiao School Computer Club</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>普宁市华侨中学计算机社官网</title>
+  <meta name="description" content="普宁侨中计算机社官方，全员队干风采、宣传片、招新海报一站式浏览。"/>
+  <link rel="icon" href="assets/images/logo.png"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <style>
+    :root{
+      --bg:#0d1b2a;
+      --card:#1b263b;
+      --accent:#00b4d8;
+      --text:#f1faee;
+      --radius:12px;
+      --font:'Segoe UI',sans-serif;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6}
+    header{display:flex;justify-content:space-between;align-items:center;padding:.8rem 2rem;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);position:sticky;top:0;z-index:1000}
+    .logo{height:46px}
+    nav a{margin-left:1.2rem;color:var(--text);text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--accent)}
+    section{padding:4rem 6vw;max-width:1200px;margin:auto}
+    h2{font-size:2rem;margin-bottom:1.5rem;text-align:center;color:var(--accent)}
+    #hero{height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:url('assets/images/hero-poster.jpg') center/cover fixed;position:relative}
+    #hero h1{font-size:3rem;letter-spacing:2px}
+    .scroll-hint{position:absolute;bottom:10vh;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;color:#fff;font-size:.9rem;animation:float 2s ease-in-out infinite}
+    .scroll-hint svg{width:24px;height:24px;fill:#fff;margin-top:.25rem}
+    @keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+    .video-wrapper{position:relative;border-radius:12px;overflow:hidden}
+    .video-wrapper img{width:100%;display:block}
+    .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:60px;height:60px;background:rgba(0,0,0,.4);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .play-btn::after{content:'▶';color:#fff;font-size:24px;margin-left:4px}
+    .poster-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
+    .poster-grid img{width:100%;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:.3s}
+    .poster-grid img:hover{transform:scale(1.03)}
+    .timeline{list-style:none;position:relative;padding-left:2rem}
+    .timeline li{margin:2rem 0;position:relative}
+    .timeline li::before{content:'';width:12px;height:12px;background:var(--accent);border-radius:50%;position:absolute;left:-2rem;top:.3rem}
+    .rules-list{list-style:decimal inside}
+    /* 3D 翻转卡片容器 */
+    .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem;perspective:1200px}
+    .flip-card{position:relative;width:100%;aspect-ratio:1/1;cursor:pointer;transform-style:preserve-3d;transition:transform .6s}
+    .flip-card.flipped{transform:rotateY(180deg)}
+    .flip-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);overflow:hidden;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.5rem;text-align:center}
+    .flip-face img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius)}
+    .flip-back{transform:rotateY(180deg);justify-content:center}
+    .flip-back h3{margin:.25rem 0;font-size:1rem;color:var(--accent)}
+    footer{text-align:center;padding:2rem;background:#000;color:#aaa}
+    .btn{background:var(--accent);color:#fff;padding:.75rem 1.5rem;border-radius:30px;text-decoration:none;display:inline-block;margin:.5rem .25rem;transition:.3s}
+    .btn:hover{transform:scale(1.05)}
+    @media(max-width:768px){.about-inner{grid-template-columns:1fr}}
+
+    
+
+    /* 海报两列 */
+    .poster-row{display:flex;gap:1rem;flex-wrap:wrap}
+    .poster-row img{flex:1 1 calc(50% - .5rem);min-width:250px;border-radius:var(--radius);box-shadow:0 4px 12px rgba(0,0,0,.3);transition:.3s}
+    .poster-row img:hover{transform:scale(1.03)}
+
+    .space {height:40px}
+    p1 {font-size: 1.2rem}
+  </style>
+</head>
+
+<body>
+<!-- 顶部导航 -->
+<header>
+  <img src="assets/images/logo.png" class="logo" alt="队徽"/>
+  <nav>
+    <a href="#about">关于我们</a>
+    <a href="#poster">宣传海报</a>
+    <a href="#events">社团活动</a>
+    <a href="#rules">社规</a>
+    <a href="#join">加入我们</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <!-- 社徽 -->
+    <img
+      src="assets/images/logo.png"
+      alt="社徽"
+      style="
+        width: 20vmin;        /* 跟随屏幕比例 */
+        min-width: 120px;
+        max-width: 220px;
+        opacity: 0.85;
+        filter: drop-shadow(0 0 10px rgba(0,0,0,.5));
+        margin-bottom: 2rem;
+      "
+    />
+  <div class="hero-inner">
+    <h1>HackC.S计算机社</h1>
+    <p>Model the World, Code the Future.</p>
+    <a href="#about" class="scroll-hint">
+      <span>向下滑动</span>
+      <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+    </a>
+  </div>
+</section>
+
+
+<section id="about">
+  <h2>关于我们</h2>
+  <img 
+  src="assets/images/社卡.jpg" 
+  alt="社卡图片"
+  style="
+    width: 100%;  /* 视口宽度的30% */
+    height: auto;  /* 保持宽高比 */
+  ">
+  
+  <p style="margin-top:1rem;text-align:center;">计算机社社卡版图</p>
+
+  <div class="about-text">
+      <p class="space"> </p>
+      <p1>HackC.S计算机社是以“计算机技术与应用”为主题的计算机社团，于2017年成立，是一个集学习、交流、创新于一体的平台，旨在为学生提供一个学习、探索和实践计算机技术的机会。</p1>
+      <p1>目前设有编程部、传媒部和创客部，“大胆创新，勇于创新，奋发图强，服务侨中”是我们的宗旨。</p1>
+      <p1>技术小白？没关系，在这里，你将解锁Python/Java/C++等语言通关秘籍，青春的代码，由你编译！加入我们，一起奔赴科技的星辰大海！</p1>
+    </div>
+</section>
+
+<!-- 宣传海报 -->
+<section id="poster">
+  <h2>宣传海报</h2>
+  <div class="poster-row">
+    <img src="assets/images/海报01.jpg" alt="宣传单"/>
+    <img src="assets/images/海报02.jpg" alt="详细宣传单"/>
+
+  </div>
+</section>
+
+<!-- 品牌活动 -->
+<section id="events">
+  <h2>社团活动</h2>
+  <ul class="timeline">
+    <li><span>每周基础培训</span><p>计算机组成与原理 / Python / C++ / Scratch图形化编程 / 机器人制作</p></li>
+    <li><span>不定时社团活动</span><p>计算机学习经验分享/编程算法研究</p></li>
+    <li><span>实战项目练习</span><p>机器人制作/算法竞赛/创客活动</p></li>
+    <li><span>换届大会</span><p>总结本届社团具体情况，公布下届社团干部</p></li>
+  </ul>
+</section>
+
+
+
+
+
+<!-- 队规 -->
+<section id="rules">
+  <h2>社规摘要</h2>
+  <ol class="rules-list">
+    <li>按时参加社团课程与活动</li>
+    <li>严禁在活动中出现违禁品或损害社团声誉行为。</li>
+    <li>设立“资源转化奖”“协同先锋奖”等荣誉及资源倾斜。</li>
+    <li>本社规解释权归社团所有。</li>
+    <li>遵规守纪，听从安排</li>
+  </ol>
+  <!-- 新增下载按钮 -->
+  <div style="text-align:center;margin-top:2rem">
+    <a class="btn" href="assets/pdf/rules.pdf" download="揭阳第一中学数模队队规.pdf">立即下载完整队规 PDF（未更新）</a>
+  </div>
+</section>
+
+<!-- 加入我们 -->
+<section id="join">
+  <h2>加入我们（以下内容尚未完善）</h2>
+  <p>零基础可报名，面试只看热情与脑洞！</p>
+  <div class="join-way">
+    <a class="btn" href="#" target="_blank">QQ群一键加</a>
+    <a class="btn" href="#" target="_blank">关注微信公众号</a>
+  </div>
+  <p>招生计划：人数视纳新情况而定</p>
+  <p>欢迎25届侨中学子前来报名</p>
+  <div class="join-way">
+    <a class="btn" href="#" target="_blank">报名意向表</a>
+    <a class="btn" href="#" target="_blank">能力测试题</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 普宁侨中计算机社 · All rights reserved.</p>
+</footer>
+
+<!-- 队干数据与卡片生成 -->
+<script>
+const leaders = [
+  { name:'王梓泰',title:'队长',dept:'管理部',rand:true,said:'“地道儿～”'},
+  { name:'郑烨骏',title:'副队长·业务线',dept:'管理部',said:'“INTJ   头脑简单，四肢不发达；喜欢篮球🏀、羽毛球🏸   想在数模队交到志同道合的朋友”'},
+  { name:'蒋妮',title:'副队长·支持线',dept:'管理部',said:''},
+  { name:'陈平浩',title:'技术指导专员',dept:'管理部',said:'“嘿~(¯▽¯~)  欢迎各位师弟师妹们来找我玩啊  读书，吉他，跑步，摄影，书法都可以来交流啊ヾ(≧▽≦*)o”'},
+  { name:'钟子坤',title:'资源枢纽部长',dept:'资源枢纽部',said:'“INTJ极度社恐  喜欢摄影 Kpop 画画 看小说”'},
+  { name:'邱钰棋',title:'品牌组组长',dept:'资源枢纽',rand:true,said:'“无”'},
+  { name:'林可凡',title:'品牌组组员',dept:'资源枢纽',said:'“#摄影  世界倒映在胶卷，眼睛赏析废墟里的“旷野”。哪怕“生命如暗室”也“不妨我明写春诗”。”'},
+  { name:'王湉',title:'外联组组长',dept:'资源枢纽',said:''},
+  { name:'卓怡彤',title:'秘书组组长',dept:'资源枢纽',said:'“我喜欢看小说🤗，听歌（喜欢五月天，孙燕姿，许嵩），喜欢拍照记录生活，喜欢旅游”'},
+  { name:'陈蔚宸',title:'技术组组长',dept:'资源枢纽',said:''},
+  { name:'洪钊涵',title:'管理组组长',dept:'竞赛部',said:''},
+  { name:'林孝锶',title:'竞赛部部长',dept:'竞赛部',said:''},
+  { name:'江恩跃',title:'成员组',dept:'竞赛部',said:''},
+  { name:'黄倍鑫',title:'成员组',dept:'竞赛部',said:'“权威”'},
+  { name:'何思凯',title:'培训组组长',dept:'竞赛部',said:''},
+  { name:'吴偲',title:'学研组组长',dept:'学研部',said:''}
+];
+
+const grid = document.getElementById('team-grid');
+leaders.forEach(l=>{
+  const imgSrc = l.rand
+    ? `assets/images/leaders/${l.name}${Math.random()>.5?1:2}.jpg`
+    : `assets/images/leaders/${l.name}.jpg`;
+  grid.insertAdjacentHTML('beforeend', `
+    <div class="flip-card">
+      <div class="flip-face">
+        <img src="${imgSrc}" alt="${l.name}">
+      </div>
+      <div class="flip-face flip-back">
+        <h3>${l.name}</h3>
+        <span>${l.title}</span>
+        <small>${l.dept}</small>
+        <small>${l.said}</small>
+      </div>
+    </div>
+  `);
+});
+
+// 3D 翻转动画（鼠标悬停）
+document.querySelectorAll('.flip-card').forEach(card=>{
+  card.addEventListener('mouseenter',()=>card.classList.add('flipped'));
+  card.addEventListener('mouseleave',()=>card.classList.remove('flipped'));
+});
+
+// 首屏滚动提示
+document.querySelector('.scroll-hint').addEventListener('click',()=>{
+  document.getElementById('about').scrollIntoView({behavior:'smooth'});
+});
+</script>
+</body>
+
+</html>
